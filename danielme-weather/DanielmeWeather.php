@@ -20,10 +20,22 @@ class DanielmeWeather extends WP_Widget {
     /**
      * Widget settings 
      */
-    public function form($input) {        
+    public function form($input) {
+        $degrees = array('f', 'c');
         echo '<p>';
         echo '<label for="'.$this->get_field_id('location').'">Default Location:</label>';
 	    echo '<input class="widefat" id="'.$this->get_field_id('location').'" name="'.$this->get_field_name('location').'" type="text" value="'.$input['location'].'">';
+        echo '</p><p>';
+        echo '<label for="'.$this->get_field_id('degrees').'">Degree format:</label>';
+        echo '<select class="widefat" id="'.$this->get_field_id('degrees').'" name="'.$this->get_field_name('degrees').'" type="text">';
+            foreach ($degrees as $degree) {
+                echo '<option value="'.$degree.'"';
+                if ($degree === $this->get_field_name('degrees')) {
+                    echo ' selected="selected"';
+                }
+                echo '>'.$degree.'</option>';
+            }
+        echo '</select>';
         echo '</p><p>';
         echo '<label for="'.$this->get_field_id('updateInterval').'">Update Interval (min):</label>';
 	    echo '<br/><input id="'.$this->get_field_id('updateInterval').'" name="'.$this->get_field_name('updateInterval').'" type="text" value="'.$input['updateInterval'].'">';
@@ -44,6 +56,7 @@ class DanielmeWeather extends WP_Widget {
     function update($new_instance, $old_instance) {
         $instance = $old_instance;
         $instance['location'] = strip_tags($new_instance['location']);
+        $instance['degrees'] = strip_tags($new_instance['degrees']);
         $instance['updateInterval'] = (int)$new_instance['updateInterval'];
         $instance['enableHTML5geo'] = $new_instance['enableHTML5geo'];
         return $instance;
@@ -56,12 +69,13 @@ class DanielmeWeather extends WP_Widget {
         $settings = end($this->get_settings());
         $interval = $settings['updateInterval'] * 6000;
         $location = $settings['location'];
+        $degrees = $settings['degrees'];
 
         wp_enqueue_style('weatherIcons');
 
         echo '<aside id="danielme-simpleweather-widget" class="widget">';
         echo '<h2 class="widget-title">Weather Widget</h2>';
-        echo '<div id="danielme-simpleweather-widget-content" data-update-interval="'.$interval.'" data-location="'.$location.'"></div>';
+        echo '<div id="danielme-simpleweather-widget-content" data-update-interval="'.$interval.'" data-location="'.$location.'" data-degrees-format="'.$degrees.'"></div>';
 
         //check to see if html5 geo is enabled, then call the html5-geo js instead.
         if ($settings['enableHTML5geo'] == 'on') {

@@ -1,13 +1,14 @@
 jQuery(document).ready(function() {
     var element = '#danielme-simpleweather-widget-content';
     var location = jQuery(element).attr('data-location');
+    var degreesformat = jQuery(element).attr('data-degrees-format');
     var interval = jQuery(element).attr('data-update-interval-location');
 
     if (location) {
-        getWeather(location, element);
+        getWeather(location, degreesformat, element);
         //update weather interval if set
         if (interval > 0) {
-            setInterval(getWeather(location, element), interval);
+            setInterval(getWeather(location, degreesformat, element), interval);
         }
     }
     else {
@@ -17,10 +18,10 @@ jQuery(document).ready(function() {
 
 });
 
-function getWeather(location, element) {
+function getWeather(location, degreesformat, element) {
     jQuery.simpleWeather({
         location: location,
-        unit: 'f',
+        unit: degreesformat,
         success: function(weather) {
             html = '<p>'+weather.title+'</p>';
             html += '<h2><i class="wi wi-condition-'+weather.code+'"></i> Now: '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
