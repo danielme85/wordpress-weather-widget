@@ -1,11 +1,16 @@
-### Simple Weather Widget for Wordpress
+=== SimpleWeather Widget ===
+Contributors: danielme85
+Donate link: https://danielmellum.com/
+Tags: weather, widget, simpleweather, weathericons
+Requires at least: 4.7
+Tested up to: 4.8
+Stable tag: 4.8
+License: MIT
+License URI: https://opensource.org/licenses/MIT
 
-<p>Not available in Offical Wordpress plugin library (yet... since they manually give out subversion access... thats right: "svn" the repository tool grandpa used back in the day :)<br>
-To install, drop danielme-weather folder into your Wordpress plug-in folder and add it in the administration interface.</p>
-<p>Uses: <br>simpleWeather v3.1.0 - http://simpleweatherjs.com
-<br>Weather Icons - http://erikflowers.github.io/weather-icons </p>
+A Wordpress widget that shows weather information based on SimpleWeather.js and WeatherIcons css.
 
-#### Installation
+== Installation ==
 
 1. Upload the plugin folder: "danielme-weather" files to the `/wp-content/plugins/` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress

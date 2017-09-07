@@ -4,6 +4,13 @@ jQuery(document).ready(function() {
     var degreesformat = jQuery(element).attr('data-degrees-format');
     var interval = jQuery(element).attr('data-update-interval-location');
 
+    if (location) {
+        getWeather(location, degreesformat, element);
+        //update weather interval if set
+        if (interval > 0) {
+            setInterval(getWeather(location, element), interval);
+        }
+    }
     if ('geolocation' in navigator) {
         jQuery('#danielme-simpleweather-widget-geotrigger').click(function(e) {
             e.preventDefault();
@@ -16,17 +23,6 @@ jQuery(document).ready(function() {
         });
 
     }
-    else {
-        jQuery('#danielme-simpleweather-widget-geotrigger').hide();
-    }
-
-    if (location) {
-        getWeather(location, degreesformat, element);
-        //update weather interval if set
-        if (interval > 0) {
-            setInterval(getWeather(location, element), interval);
-        }
-    }
 });
 
 function getWeather(location, degreesformat,  element) {
@@ -34,11 +30,12 @@ function getWeather(location, degreesformat,  element) {
         location: '('+location+')',
         unit: degreesformat,
         success: function(weather) {
-            html = '<p>'+weather.title+'</p>';
-            html += '<h2><i class="wi wi-condition-'+weather.code+'"></i> Now: '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-            html += '<h2><i class="wi wi-condition-'+weather.forecast[0].code+'"></i> Today: '+weather.forecast[0].high+'&deg;'+weather.units.temp+'</h2>';
-            html += '<h2><i class="wi wi-condition-'+weather.forecast[1].code+'"></i> '+weather.forecast[1].day+': '+weather.forecast[1].high+'&deg;'+weather.units.temp+'</h2>';
-            html += '<h2><i class="wi wi-condition-'+weather.forecast[2].code+'"></i> '+weather.forecast[2].day+': '+weather.forecast[2].high+'&deg;'+weather.units.temp+'</h2>';
+            html = '<div class="danielme-weather-box">Now<br><i class="wi wi-condition-'+weather.code+'"></i><br>'+weather.temp+'&deg;'+weather.units.temp+'</div>';
+            html += '<div class="danielme-weather-box">Today<br><i class="wi wi-condition-'+weather.forecast[0].code+'"></i><br>'+weather.forecast[0].high+'&deg;'+weather.units.temp+'</div>';
+            html += '<div class="danielme-weather-box">'+weather.forecast[1].day+'<br><i class="wi wi-condition-'+weather.forecast[1].code+'"></i><br>'+weather.forecast[1].high+'&deg;'+weather.units.temp+'</div>';
+            html += '<div class="danielme-weather-box">'+weather.forecast[2].day+'<br><i class="wi wi-condition-'+weather.forecast[2].code+'"></i><br>'+weather.forecast[2].high+'&deg;'+weather.units.temp+'</div>';
+            html += '<div class="danielme-weather-box">'+weather.forecast[3].day+'<br><i class="wi wi-condition-'+weather.forecast[3].code+'"></i><br>'+weather.forecast[3].high+'&deg;'+weather.units.temp+'</div>';
+            html += '<p>'+weather.title+'</p>';
             jQuery(element).html(html);
         },
         error: function(error) {

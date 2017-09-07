@@ -1,0 +1,15 @@
+.danielme-weather-box {
+    display: inline-block;
+    border-radius: 0px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.danielme-weather-box i {
+    font-size: 22px;
+    padding: 4px;
+}

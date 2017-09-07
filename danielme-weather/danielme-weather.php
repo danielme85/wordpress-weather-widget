@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Danielme's Weather Widget
-Description: Simple wordpress  widget that uses <a href="http://simpleweatherjs.com">simpleWeather</a> to fetch and parse weather data from Yahoo. Uses the beautiful <a href="http://erikflowers.github.io/weather-icons">weatherIcons</a> made by mr. Erik Flowers. 
-Version: 0.0.2
+Plugin Name: SimpleWeather Widget
+Description: A Wordpress widget that uses <a href="http://simpleweatherjs.com">simpleWeather</a> to fetch and parse weather data from Yahoo. Uses the beautiful <a href="http://erikflowers.github.io/weather-icons">weatherIcons</a> made by mr. Erik Flowers.
+Version: 0.0.3
 Author: Daniel Mellum
 */
 
