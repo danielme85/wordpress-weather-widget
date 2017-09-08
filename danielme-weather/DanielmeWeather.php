@@ -1,8 +1,8 @@
 <?php
 /**
- * Simple Wordpress widget using simpleWeather jquery plugin that fetches and parses weatherinfo from yahoo. 
+ * A Simple Wordpress widget using simpleWeather jquery plugin that fetches and parses weatherinfo from yahoo.
  *
- * @author dmellum
+ * @author Daniel Mellum
  */
 
 class DanielmeWeather extends WP_Widget {
@@ -15,7 +15,7 @@ class DanielmeWeather extends WP_Widget {
         wp_register_script( 'weather-html5geo', plugins_url('/js/weather-html5geo.js', __FILE__), array('simpleWeather'));
         wp_register_style('weatherIcons', plugins_url('/css/weatherIcons.css', __FILE__));
         wp_register_style('danWeather', plugins_url('/css/danWeather.css', __FILE__));
-        parent::__construct('DanielmeWeather', 'SimpleWeather Widget');
+        parent::__construct('DanielmeWeather', 'Danielme Weather Widget');
     }
     
     /**
@@ -86,7 +86,7 @@ class DanielmeWeather extends WP_Widget {
 
         echo '<aside id="danielme-simpleweather-widget" class="widget">';
         if ($title and $title != '') {
-            echo '<h2 class="widget-title">Weather Widget</h2>';
+            echo '<h2 class="widget-title">'.$title.'</h2>';
         }
         echo '<div id="danielme-simpleweather-widget-content" data-update-interval="'.$interval.'" data-location="'.$location.'" data-degrees-format="'.$degrees.'"></div>';
 
